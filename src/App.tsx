@@ -164,8 +164,7 @@ function App() {
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
-        <DreamscapeBackground />
-        <div className="text-center relative z-10">
+        <div className="text-center">
           <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-4">
             <Sparkles className="w-8 h-8 text-white animate-pulse" />
           </div>
@@ -272,11 +271,9 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-      <DreamscapeBackground />
-      
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Header */}
-      <header className="bg-white/10 backdrop-blur-xl border-b border-white/20 sticky top-0 z-50">
+      <header className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -300,7 +297,7 @@ function App() {
                 </div>
                 <button
                   onClick={signOut}
-                  className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white/20 rounded-lg transition-colors"
+                  className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                   title="Sign Out"
                 >
                   <LogOut className="w-4 h-4" />
@@ -319,7 +316,7 @@ function App() {
       />
 
       {/* Progress Steps */}
-      <div className="bg-white/10 backdrop-blur-sm border-b border-white/20 relative z-10">
+      <div className="bg-white/50 backdrop-blur-sm border-b border-gray-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
           <ProgressSteps currentStep={getStepIndex()} steps={steps} />
         </div>
@@ -327,15 +324,15 @@ function App() {
 
       {/* Error Display */}
       {error && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 relative z-10">
-          <div className="bg-red-50/90 backdrop-blur-sm border border-red-200 rounded-xl p-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4">
             <p className="text-red-600 text-sm">{error}</p>
           </div>
         </div>
       )}
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {!showSplitLayout ? (
           // Full width for type selection
           <div className="max-w-4xl mx-auto">
@@ -348,16 +345,16 @@ function App() {
           // Split layout for form and preview
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 min-h-[calc(100vh-300px)]">
             {/* Left Side - Form */}
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
               <div className="h-full flex flex-col">
-                <div className="p-4 sm:p-8 border-b border-white/20">
+                <div className="p-4 sm:p-8 border-b border-gray-100">
                   <div className="flex items-center justify-between">
                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                       {selectedType === 'blog' ? 'Blog Featured Image' : 'Infographic Image'}
                     </h2>
                     <button
                       onClick={handleBack}
-                      className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-white/20 rounded-lg transition-colors"
+                      className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
                     >
                       ← Back
                     </button>
@@ -389,7 +386,7 @@ function App() {
             </div>
 
             {/* Right Side - Preview */}
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
               <ImagePreview
                 isLoading={isLoading}
                 generatedImage={generatedImage}
@@ -403,7 +400,7 @@ function App() {
       </main>
 
       {/* Footer with SEO Engine Branding */}
-      <footer className="bg-white/10 backdrop-blur-xl border-t border-white/20 mt-16 relative z-10">
+      <footer className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <div className="text-center">
             <div className="flex items-center justify-center mb-4">

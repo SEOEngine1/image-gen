@@ -372,7 +372,7 @@ export const BulkProcessingModal: React.FC<BulkProcessingModalProps> = ({
   return (
     <>
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-white rounded-3xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white relative flex-shrink-0">
             <button
@@ -789,9 +789,9 @@ export const BulkProcessingModal: React.FC<BulkProcessingModalProps> = ({
         </div>
       </div>
 
-      {/* Enhanced Image Preview Modal with Zoom - FIXED Z-INDEX */}
+      {/* Enhanced Image Preview Modal with Zoom */}
       {previewImage && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-7xl max-h-[95vh] overflow-hidden flex flex-col">
             {/* Preview Header */}
             <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-white">
