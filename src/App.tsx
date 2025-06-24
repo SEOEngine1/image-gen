@@ -6,6 +6,7 @@ import { InfographicForm } from './components/InfographicForm';
 import { ImagePreview } from './components/ImagePreview';
 import { ProgressSteps } from './components/ProgressSteps';
 import { QuickNavigation } from './components/QuickNavigation';
+import { DreamscapeBackground } from './components/DreamscapeBackground';
 import { AuthModal } from './components/AuthModal';
 import { useAuth } from './hooks/useAuth';
 import { sanitizeFormData } from './utils/textSanitizer';
@@ -163,7 +164,8 @@ function App() {
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
-        <div className="text-center">
+        <DreamscapeBackground />
+        <div className="text-center relative z-10">
           <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-4">
             <Sparkles className="w-8 h-8 text-white animate-pulse" />
           </div>
@@ -177,9 +179,11 @@ function App() {
   // Show authentication screen if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+        <DreamscapeBackground />
+        
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50">
+        <header className="bg-white/10 backdrop-blur-xl border-b border-white/20 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -202,12 +206,12 @@ function App() {
         </header>
 
         {/* Hero Section */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
           <div className="text-center">
             <div className="flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8">
               <Sparkles className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               AI Image Generator
             </h1>
             <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -234,9 +238,9 @@ function App() {
         </main>
 
         {/* Features */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-200/50">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 mb-4">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
@@ -245,7 +249,7 @@ function App() {
                 Generate eye-catching featured images for your blog posts with custom titles and engaging visuals.
               </p>
             </div>
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-200/50">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 mb-4">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
@@ -268,9 +272,11 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      <DreamscapeBackground />
+      
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-50">
+      <header className="bg-white/10 backdrop-blur-xl border-b border-white/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -294,7 +300,7 @@ function App() {
                 </div>
                 <button
                   onClick={signOut}
-                  className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white/20 rounded-lg transition-colors"
                   title="Sign Out"
                 >
                   <LogOut className="w-4 h-4" />
@@ -313,7 +319,7 @@ function App() {
       />
 
       {/* Progress Steps */}
-      <div className="bg-white/50 backdrop-blur-sm border-b border-gray-200/50">
+      <div className="bg-white/10 backdrop-blur-sm border-b border-white/20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
           <ProgressSteps currentStep={getStepIndex()} steps={steps} />
         </div>
@@ -321,15 +327,15 @@ function App() {
 
       {/* Error Display */}
       {error && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 relative z-10">
+          <div className="bg-red-50/90 backdrop-blur-sm border border-red-200 rounded-xl p-4">
             <p className="text-red-600 text-sm">{error}</p>
           </div>
         </div>
       )}
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10">
         {!showSplitLayout ? (
           // Full width for type selection
           <div className="max-w-4xl mx-auto">
@@ -342,16 +348,16 @@ function App() {
           // Split layout for form and preview
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 min-h-[calc(100vh-300px)]">
             {/* Left Side - Form */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden">
               <div className="h-full flex flex-col">
-                <div className="p-4 sm:p-8 border-b border-gray-100">
+                <div className="p-4 sm:p-8 border-b border-white/20">
                   <div className="flex items-center justify-between">
                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                       {selectedType === 'blog' ? 'Blog Featured Image' : 'Infographic Image'}
                     </h2>
                     <button
                       onClick={handleBack}
-                      className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                      className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-white/20 rounded-lg transition-colors"
                     >
                       ← Back
                     </button>
@@ -383,7 +389,7 @@ function App() {
             </div>
 
             {/* Right Side - Preview */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden">
               <ImagePreview
                 isLoading={isLoading}
                 generatedImage={generatedImage}
@@ -397,7 +403,7 @@ function App() {
       </main>
 
       {/* Footer with SEO Engine Branding */}
-      <footer className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 mt-16">
+      <footer className="bg-white/10 backdrop-blur-xl border-t border-white/20 mt-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <div className="text-center">
             <div className="flex items-center justify-center mb-4">
