@@ -5,6 +5,7 @@ import { BlogImageForm } from './components/BlogImageForm';
 import { InfographicForm } from './components/InfographicForm';
 import { ImagePreview } from './components/ImagePreview';
 import { ProgressSteps } from './components/ProgressSteps';
+import { QuickNavigation } from './components/QuickNavigation';
 import { AuthModal } from './components/AuthModal';
 import { useAuth } from './hooks/useAuth';
 import { sanitizeFormData } from './utils/textSanitizer';
@@ -45,6 +46,19 @@ function App() {
     setGeneratedImage(null);
     setFormData(null);
     setError(null);
+  };
+
+  const handleQuickNavigation = (type: 'blog' | 'infographic') => {
+    // If switching types while in form or result step, go to form step for new type
+    if (currentStep !== 'select') {
+      setSelectedType(type);
+      setCurrentStep('form');
+      setGeneratedImage(null);
+      setFormData(null);
+      setError(null);
+    } else {
+      handleTypeSelect(type);
+    }
   };
 
   const handleFormSubmit = async (data: any) => {
@@ -143,6 +157,7 @@ function App() {
   };
 
   const showSplitLayout = currentStep === 'form' || currentStep === 'result';
+  const showQuickNav = currentStep !== 'select';
 
   // Show loading screen while checking authentication
   if (authLoading) {
@@ -289,6 +304,13 @@ function App() {
           </div>
         </div>
       </header>
+
+      {/* Quick Navigation */}
+      <QuickNavigation
+        currentType={selectedType}
+        onTypeSelect={handleQuickNavigation}
+        isVisible={showQuickNav}
+      />
 
       {/* Progress Steps */}
       <div className="bg-white/50 backdrop-blur-sm border-b border-gray-200/50">
