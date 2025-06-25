@@ -178,7 +178,7 @@ function App() {
   // Show authentication screen if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      <div className="h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
         <DreamscapeBackground />
         
         {/* Header */}
@@ -204,9 +204,9 @@ function App() {
           </div>
         </header>
 
-        {/* Hero Section */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
-          <div className="text-center">
+        {/* Hero Section - Centered Content */}
+        <main className="flex-1 flex items-center justify-center relative z-10 px-4 sm:px-6">
+          <div className="text-center max-w-4xl mx-auto">
             <div className="flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8">
               <Sparkles className="w-10 h-10 text-white" />
             </div>
@@ -235,30 +235,6 @@ function App() {
             </button>
           </div>
         </main>
-
-        {/* Features */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 mb-4">
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Blog Featured Images</h3>
-              <p className="text-gray-600">
-                Generate eye-catching featured images for your blog posts with custom titles and engaging visuals.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 mb-4">
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Infographic Images</h3>
-              <p className="text-gray-600">
-                Transform your data and content into visually appealing infographics that tell your story.
-              </p>
-            </div>
-          </div>
-        </section>
 
         <AuthModal
           isOpen={showAuthModal}

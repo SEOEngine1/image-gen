@@ -129,7 +129,7 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
         float vignette = smoothstep(0.8, 0.2, length(st - 0.5));
         finalColor *= vignette;
         
-        gl_FragColor = vec4(finalColor, 0.15); // Low alpha for subtle background effect
+        gl_FragColor = vec4(finalColor, 0.3); // Increased alpha for more visibility
       }
     `;
 
@@ -260,8 +260,8 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 pointer-events-none ${className}`}
-      style={{ zIndex: -1 }}
+      className={`absolute inset-0 w-full h-full ${className}`}
+      style={{ zIndex: 1 }}
     />
   );
 };
