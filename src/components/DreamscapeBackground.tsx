@@ -28,7 +28,7 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
       }
     `;
 
-    // Fragment shader source - this creates the morphing dreamscape effect
+    // Enhanced fragment shader with more vibrant colors and better contrast
     const fragmentShaderSource = `
       precision mediump float;
       uniform float u_time;
@@ -61,7 +61,7 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
         float amplitude = 0.5;
         float frequency = 0.0;
         
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
           value += amplitude * smoothNoise(st);
           st *= 2.0;
           amplitude *= 0.5;
@@ -69,12 +69,13 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
         return value;
       }
       
-      // Color palette function
+      // Enhanced color palette with more vibrant colors
       vec3 palette(float t) {
-        vec3 a = vec3(0.5, 0.5, 0.5);
-        vec3 b = vec3(0.5, 0.5, 0.5);
-        vec3 c = vec3(1.0, 1.0, 1.0);
-        vec3 d = vec3(0.263, 0.416, 0.557);
+        // More vibrant color palette for better visibility
+        vec3 a = vec3(0.2, 0.5, 0.8);
+        vec3 b = vec3(0.8, 0.5, 0.2);
+        vec3 c = vec3(2.0, 1.0, 1.0);
+        vec3 d = vec3(0.0, 0.33, 0.67);
         
         return a + b * cos(6.28318 * (c * t + d));
       }
@@ -84,52 +85,56 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
         st.x *= u_resolution.x / u_resolution.y;
         
         // Create flowing, organic patterns
-        vec2 pos = st * 3.0;
+        vec2 pos = st * 2.5;
         
-        // Add time-based movement
-        pos += vec2(sin(u_time * 0.1), cos(u_time * 0.15)) * 0.5;
+        // Add time-based movement with more dynamic motion
+        pos += vec2(sin(u_time * 0.15), cos(u_time * 0.12)) * 0.8;
         
-        // Mouse interaction - create ripple effect around cursor
+        // Enhanced mouse interaction
         vec2 mousePos = u_mouse;
         mousePos.x *= u_resolution.x / u_resolution.y;
         float mouseDist = distance(st * vec2(u_resolution.x / u_resolution.y, 1.0), mousePos);
-        float mouseInfluence = smoothstep(0.3, 0.0, mouseDist);
+        float mouseInfluence = smoothstep(0.4, 0.0, mouseDist);
         
-        // Create ripple effect
-        float ripple = sin(mouseDist * 20.0 - u_time * 2.0) * mouseInfluence * 0.1;
+        // Create stronger ripple effect
+        float ripple = sin(mouseDist * 25.0 - u_time * 3.0) * mouseInfluence * 0.2;
         pos += ripple;
         
-        // Generate base noise pattern
-        float n1 = fractalNoise(pos + u_time * 0.05);
-        float n2 = fractalNoise(pos * 1.5 + u_time * 0.03);
-        float n3 = fractalNoise(pos * 0.5 + u_time * 0.07);
+        // Generate base noise pattern with more layers
+        float n1 = fractalNoise(pos + u_time * 0.08);
+        float n2 = fractalNoise(pos * 1.8 + u_time * 0.05);
+        float n3 = fractalNoise(pos * 0.3 + u_time * 0.1);
         
-        // Combine noise layers
-        float finalNoise = n1 * 0.5 + n2 * 0.3 + n3 * 0.2;
+        // Combine noise layers with better contrast
+        float finalNoise = n1 * 0.6 + n2 * 0.3 + n3 * 0.1;
         
-        // Add mouse interaction to color
-        finalNoise += mouseInfluence * 0.3;
+        // Add stronger mouse interaction to color
+        finalNoise += mouseInfluence * 0.5;
         
-        // Generate colors using palette
-        vec3 color1 = palette(finalNoise + u_time * 0.1);
-        vec3 color2 = palette(finalNoise + 0.5 + u_time * 0.08);
+        // Generate more vibrant colors
+        vec3 color1 = palette(finalNoise + u_time * 0.15);
+        vec3 color2 = palette(finalNoise + 0.5 + u_time * 0.12);
         
-        // Mix colors based on another noise layer
-        float mixFactor = smoothNoise(st * 2.0 + u_time * 0.02);
+        // Mix colors with more dynamic blending
+        float mixFactor = smoothNoise(st * 3.0 + u_time * 0.03);
         vec3 finalColor = mix(color1, color2, mixFactor);
         
-        // Add subtle gradient overlay
-        float gradient = 1.0 - length(st - 0.5) * 0.8;
+        // Enhanced gradient overlay for better depth
+        float gradient = 1.0 - length(st - 0.5) * 0.6;
         finalColor *= gradient;
         
-        // Enhance colors around mouse cursor
-        finalColor = mix(finalColor, finalColor * 1.5, mouseInfluence * 0.5);
+        // Stronger color enhancement around mouse cursor
+        finalColor = mix(finalColor, finalColor * 2.0, mouseInfluence * 0.7);
+        
+        // Add some brightness boost for better visibility
+        finalColor *= 1.5;
         
         // Subtle vignette effect
-        float vignette = smoothstep(0.8, 0.2, length(st - 0.5));
+        float vignette = smoothstep(0.9, 0.3, length(st - 0.5));
         finalColor *= vignette;
         
-        gl_FragColor = vec4(finalColor, 0.3); // Increased alpha for more visibility
+        // Higher alpha for much better visibility against black background
+        gl_FragColor = vec4(finalColor, 0.8);
       }
     `;
 
@@ -260,7 +265,7 @@ export const DreamscapeBackground: React.FC<DreamscapeBackgroundProps> = ({ clas
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 w-full h-full ${className}`}
+      className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
       style={{ zIndex: 1 }}
     />
   );

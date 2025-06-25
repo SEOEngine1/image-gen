@@ -178,25 +178,25 @@ function App() {
   // Show authentication screen if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      <div className="h-screen bg-black relative overflow-hidden flex flex-col">
         <DreamscapeBackground />
         
         {/* Header */}
-        <header className="bg-white/10 backdrop-blur-xl border-b border-white/20 relative z-10">
+        <header className="bg-black/20 backdrop-blur-xl border-b border-white/10 relative z-10 flex-shrink-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 mr-3">
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 mr-3 shadow-lg">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">AI Image Generator</h1>
-                  <p className="text-sm text-gray-600 hidden sm:block">Create stunning visuals with AI</p>
+                  <h1 className="text-xl font-bold text-white">AI Image Generator</h1>
+                  <p className="text-sm text-blue-200 hidden sm:block">Create stunning visuals with AI</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowAuthModal(true)}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105"
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Sign In
               </button>
@@ -204,32 +204,41 @@ function App() {
           </div>
         </header>
 
-        {/* Hero Section - Centered Content */}
+        {/* Hero Section - Perfectly Centered */}
         <main className="flex-1 flex items-center justify-center relative z-10 px-4 sm:px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8">
-              <Sparkles className="w-10 h-10 text-white" />
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Main Icon */}
+            <div className="flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 mx-auto mb-8 shadow-2xl animate-pulse">
+              <Sparkles className="w-12 h-12 text-white" />
             </div>
-            <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            
+            {/* Main Heading */}
+            <h1 className="text-5xl sm:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
               AI Image Generator
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            
+            {/* Subtitle */}
+            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
               Create stunning blog featured images and infographics with the power of AI
             </p>
+            
+            {/* Feature Pills */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <div className="flex items-center text-gray-600">
-                <Zap className="w-5 h-5 mr-2 text-blue-600" />
+              <div className="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white">
+                <Zap className="w-5 h-5 mr-2 text-blue-400" />
                 Powered by SEO Engine
               </div>
-              <div className="hidden sm:block w-1 h-1 bg-gray-400 rounded-full"></div>
-              <div className="flex items-center text-gray-600">
-                <Sparkles className="w-5 h-5 mr-2 text-purple-600" />
+              <div className="hidden sm:block w-2 h-2 bg-white/30 rounded-full"></div>
+              <div className="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white">
+                <Sparkles className="w-5 h-5 mr-2 text-purple-400" />
                 Professional Quality
               </div>
             </div>
+            
+            {/* CTA Button */}
             <button
               onClick={() => setShowAuthModal(true)}
-              className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="px-10 py-4 rounded-xl bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white font-bold hover:from-blue-600 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg border border-white/20"
             >
               Get Started Free
             </button>
